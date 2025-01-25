@@ -5,32 +5,36 @@ import 'package:shop/providers/cart.dart';
 
 class OrderItem {
   final String id;
-  final double total;
+  final double totalAmount;
   final List<CartItem> products;
   final DateTime date;
 
   OrderItem({
     required this.id,
-    required this.total,
+    required this.totalAmount,
     required this.products,
     required this.date,
   });
 }
 
 class Orders with ChangeNotifier {
-  final List<OrderItem> _orders = [];
+  final List<OrderItem> _items = [];
 
-  List<OrderItem> get orders {
-    return [..._orders];
+  List<OrderItem> get items {
+    return [..._items];
+  }
+
+  int get itemsCount {
+    return _items.length;
   }
 
   void addOrder(Cart cart) {
-    _orders.insert(
+    _items.insert(
       0,
       OrderItem(
         id: Random().nextDouble().toString(),
         products: cart.items.values.toList(),
-        total: cart.totalAmount,
+        totalAmount: cart.totalAmount,
         date: DateTime.now(),
       ),
     );
