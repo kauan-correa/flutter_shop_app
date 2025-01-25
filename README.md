@@ -6,7 +6,6 @@ A Flutter application for an e-commerce shop.
 
 - Display a list of products
 - View product details
-- Add products to the cart
 - View the cart and proceed to checkout
 
 ## Getting Started
