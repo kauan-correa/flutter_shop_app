@@ -106,8 +106,10 @@ class Cart with ChangeNotifier {
           price: existingItem.price,
         ),
       );
-      notifyListeners();
+    } else {
+      _items.remove(productId);
     }
+    notifyListeners();
   }
 
   void clear() {

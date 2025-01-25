@@ -70,7 +70,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        return cart.addQuantity(widget.cartItem.productId);
+                        cart.addQuantity(widget.cartItem.productId);
                       });
                     },
                     icon: const Icon(Icons.arrow_upward),
@@ -82,7 +82,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        return cart.removeSingleItem(widget.cartItem.productId);
+                        if (widget.cartItem.quantity == 1) return;
+                        cart.removeSingleItem(widget.cartItem.productId);
                       });
                     },
                     icon: const Icon(Icons.arrow_downward),

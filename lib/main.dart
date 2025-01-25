@@ -20,7 +20,7 @@ class MainApp extends StatelessWidget {
   MainApp({super.key});
 
   final ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: const Color.fromARGB(255, 190, 190, 190),
+    scaffoldBackgroundColor: Color.fromARGB(255, 202, 200, 200),
     iconButtonTheme: IconButtonThemeData(
       style: ButtonStyle(
         iconColor: WidgetStateProperty.all<Color>(Colors.white),
@@ -33,7 +33,7 @@ class MainApp extends StatelessWidget {
       surface: Colors.white,
     ),
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.pink,
+      backgroundColor: Color.fromARGB(255, 189, 14, 72),
       titleTextStyle: TextStyle(
           color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
     ),
@@ -88,7 +88,7 @@ class MainApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: darkTheme,
+        theme: lightTheme,
         initialRoute: AppRoutes.HOME,
         routes: {
           AppRoutes.HOME: (ctx) => const ProductsOverviewScreen(),

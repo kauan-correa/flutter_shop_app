@@ -23,7 +23,10 @@ class CartScreen extends StatelessWidget {
             child: cart.items.isNotEmpty
                 ? const Text(
                     "Swipe left to delete",
-                    style: TextStyle(fontSize: 12, color: Colors.red),
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold),
                   )
                 : null,
           ),
@@ -53,6 +56,9 @@ class CartScreen extends StatelessWidget {
                     label: Text(
                       "\$ ${NumberFormat('0.00', 'en_US').format(cart.totalAmount)}",
                       style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
                     ),
                     backgroundColor: Theme.of(context).colorScheme.primary,
                   ),
