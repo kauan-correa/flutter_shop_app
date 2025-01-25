@@ -29,6 +29,30 @@ class _CartItemWidgetState extends State<CartItemWidget> {
         ),
       ),
       direction: DismissDirection.endToStart,
+      confirmDismiss: (_) {
+        return showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: const Text("Are you sure?"),
+            content:
+                const Text("Do you want to remove the item from the cart?"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop(false);
+                },
+                child: const Text("No"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop(true);
+                },
+                child: const Text("Yes"),
+              ),
+            ],
+          ),
+        );
+      },
       onDismissed: (_) {
         Provider.of<Cart>(context, listen: false)
             .removeItem(widget.cartItem.productId);
