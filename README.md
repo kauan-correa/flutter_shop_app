@@ -14,5 +14,5 @@ To get started with this project, follow these steps:
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/SEU_USUARIO/flutter_shop_app.git
+   git clone https://github.com/kauan_correa/flutter_shop_app.git
    cd flutter_shop_app
