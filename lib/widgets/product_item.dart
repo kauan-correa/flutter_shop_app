@@ -11,7 +11,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final Product product = Provider.of<Product>(context, listen: false);
     final Cart cart = Provider.of<Cart>(context, listen: false);
-    bool _undo = false;
+    bool undo = false;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -44,7 +44,7 @@ class ProductItem extends StatelessWidget {
                 color: Theme.of(context).colorScheme.secondary,
               ),
               onPressed: () {
-                _undo = false;
+                undo = false;
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -54,10 +54,10 @@ class ProductItem extends StatelessWidget {
                         const Text("Product added to cart!"),
                         TextButton(
                           onPressed: () {
-                            if (_undo) return;
+                            if (undo) return;
                             cart.removeSingleItem(product.id);
                             ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                            _undo = true;
+                            undo = true;
                           },
                           child: Text(
                             "UNDO",

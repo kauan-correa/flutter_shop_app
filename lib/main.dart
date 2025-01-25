@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shop/providers/cart.dart';
 import 'package:shop/providers/orders.dart';
 import 'package:shop/providers/products_provider.dart';
+import 'package:shop/providers/settings.dart';
 
 import 'package:shop/utils/app_routes.dart';
 
@@ -19,6 +20,33 @@ void main() {
 class MainApp extends StatelessWidget {
   MainApp({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ProductsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => Cart(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => Orders(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => SettingsProvider(),
+        ),
+      ],
+      child: Main(),
+    );
+  }
+}
+
+class Main extends StatelessWidget {
+  Main({
+    super.key,
+  });
+
   final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Color.fromARGB(255, 202, 200, 200),
     iconButtonTheme: IconButtonThemeData(
@@ -29,7 +57,7 @@ class MainApp extends StatelessWidget {
     colorScheme: const ColorScheme.light(
       primary: Colors.pink,
       secondary: Colors.deepOrangeAccent,
-      tertiary: Colors.purple,
+      tertiary: Colors.black,
       surface: Colors.white,
     ),
     appBarTheme: const AppBarTheme(
@@ -55,7 +83,7 @@ class MainApp extends StatelessWidget {
     colorScheme: ColorScheme.dark(
       primary: const Color.fromARGB(255, 189, 14, 72),
       secondary: Colors.deepOrangeAccent,
-      tertiary: Colors.purple,
+      tertiary: Colors.white,
       surface: Colors.grey[850]!,
     ),
     appBarTheme: const AppBarTheme(
@@ -74,29 +102,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => ProductsProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => Cart(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => Orders(),
-        )
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: lightTheme,
-        initialRoute: AppRoutes.HOME,
-        routes: {
-          AppRoutes.HOME: (ctx) => const ProductsOverviewScreen(),
-          AppRoutes.PRODUCT_DETAIL: (ctx) => const ProductDetailScreen(),
-          AppRoutes.CART: (ctx) => const CartScreen(),
-          AppRoutes.ORDERS: (ctx) => const OrdersScreen(),
-        },
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: Provider.of<SettingsProvider>(context).isDarkMode
+          ? darkTheme
+          : lightTheme,
+      initialRoute: AppRoutes.HOME,
+      routes: {
+        AppRoutes.HOME: (ctx) => const ProductsOverviewScreen(),
+        AppRoutes.PRODUCT_DETAIL: (ctx) => const ProductDetailScreen(),
+        AppRoutes.CART: (ctx) => const CartScreen(),
+        AppRoutes.ORDERS: (ctx) => const OrdersScreen(),
+      },
     );
   }
 }

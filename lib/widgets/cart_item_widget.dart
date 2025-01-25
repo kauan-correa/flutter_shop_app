@@ -73,7 +73,10 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         cart.addQuantity(widget.cartItem.productId);
                       });
                     },
-                    icon: const Icon(Icons.arrow_upward),
+                    icon: Icon(
+                      Icons.arrow_upward,
+                      color: Theme.of(context).colorScheme.tertiary,
+                    ),
                   ),
                   Text(
                     "${widget.cartItem.quantity}x",
@@ -86,7 +89,10 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         cart.removeSingleItem(widget.cartItem.productId);
                       });
                     },
-                    icon: const Icon(Icons.arrow_downward),
+                    icon: Icon(
+                      Icons.arrow_downward,
+                      color: Theme.of(context).colorScheme.tertiary,
+                    ),
                   ),
                 ],
               ),
